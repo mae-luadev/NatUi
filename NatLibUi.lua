@@ -28,7 +28,6 @@ function DEVIL_UI_Library_Mobile:CreateWindow(GuiName, GameName)
     local allPages = Instance.new("Frame")
     local pagesFolder = Instance.new("Folder")
     local allPageCorner = Instance.new("UICorner")
-    local KeyFruit = Instance.new("TextBox") 
 
 
     --Properties:
@@ -320,36 +319,6 @@ function DEVIL_UI_Library_Mobile:CreateWindow(GuiName, GameName)
 
 
     local PagesHandler = {}
-
-        function PagesHandler:CreateTextBox(TextBoxMainText, callback)
-        TextBoxMainText = TextBoxMainText or "TextBox"
-     
-        local PageTextBoxFrame = Instance.new("Frame")
-        local TextBox = Instance.new("TextBox")
-        local TextBoxCorner = Instance.new("UICorner")
-     
-        PageTextBoxFrame.Name = "PageTextBoxFrame"
-        PageTextBoxFrame.Parent = newPage
-        PageTextBoxFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-        PageTextBoxFrame.BackgroundTransparency = 1.000
-        PageTextBoxFrame.BorderSizePixel = 0
-        PageTextBoxFrame.Position = UDim2.new(0.0211267602, 0, 0.0235245991, 0)
-        PageTextBoxFrame.Size = UDim2.new(0, 340, 0, 25)
-     
-        TextBox.Parent = PageTextBoxFrame
-        TextBox.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-        TextBox.BorderSizePixel = 0
-        TextBox.Size = UDim2.new(0, 340, 0, 25)
-        TextBox.Font = Enum.Font.Cartoon
-        TextBox.Text = TextBoxMainText
-        TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-        TextBox.TextSize = 15.000
-        TextBox.TextStrokeTransparency = 0.900
-        TextBox.TextTransparency = 0.300
-     
-        TextBoxCorner.Name = "PageButtonCorner"
-        TextBoxCorner.Parent = TextBox
-        end
 
         function PagesHandler:CreateBlankLabel(TextLabelBlankText)
             TextLabelMainText = TextLabelMainText or ""
