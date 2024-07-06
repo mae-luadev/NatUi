@@ -777,7 +777,6 @@ function Library:Create(xHubName,xGameName)
             DropListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
             DropListLayout.SortOrder = Enum.SortOrder.LayoutOrder
             DropListLayout.Padding = UDim.new(0, 3)
-            DropListLayout.ZIndex = 2
 
             DropListLayout.Changed:Connect(function()
                 Tab.CanvasSize = UDim2.new(0, 0, 0, DropListLayout.AbsoluteContentSize.Y)
