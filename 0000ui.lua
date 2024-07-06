@@ -773,7 +773,7 @@ function Library:Create(xHubName,xGameName)
             DropList.Visible = false
 
             DropListLayout.Name = "DropListLayout"
-            DropListLayout.Parent = DropList
+            DropListLayout.Parent = DropdownFrame
             DropListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
             DropListLayout.SortOrder = Enum.SortOrder.LayoutOrder
             DropListLayout.Padding = UDim.new(0, 3)
