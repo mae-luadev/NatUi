@@ -852,14 +852,18 @@ function Library:Create(xHubName,xGameName)
 					game:GetService("TweenService"):Create(Option, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
 						TextColor3 = Color3.fromRGB(55, 74, 251)
 					}):Play()
-					DropList:TweenSize(UDim2.new(0, 408, 0, 35), "InOut", "Linear", 0.1)
 					game:GetService("TweenService"):Create(DropdownIcon, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
 						ImageColor3 = Color3.fromRGB(255,255,255)
 					}):Play()
 					wait(0.1)
+					Size()
+					opened = false 
+					DropList:TweenSize(UDim2.new(0, 408, 0, 35), "InOut", "Linear", 0.1)
+					wait(0.1)
+					game:GetService("TweenService"):Create(DropdownIcon, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+						ImageColor3 = Color3.fromRGB(255,255,255)
+					}):Play()
 					DropList.Visible = false
-					opened = false
-					DropElements(true)
 					Size()
 				end)
 
@@ -910,6 +914,7 @@ function Library:Create(xHubName,xGameName)
 							ImageColor3 = Color3.fromRGB(255,255,255)
 						}):Play()
 						wait(0.1)
+						
 						DropList.Visible = false
 						opened = false
 						DropElements(true)
