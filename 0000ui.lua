@@ -762,7 +762,7 @@ function Library:Create(xHubName,xGameName)
 			DropdownButton.TextSize = 14.000
 
 			DropList.Name = "DropList"
-			DropList.Parent = DropdownFrame
+			DropList.Parent = Tab
 			DropList.BackgroundColor3 = Color3.fromRGB(40, 42, 60)
 			DropList.BackgroundTransparency = 1.000
 			DropList.BorderSizePixel = 0
