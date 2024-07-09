@@ -91,7 +91,7 @@ function Library:Create(xHubName,xGameName)
 	Logo.Size = UDim2.new(0, 50, 0, 50)
 	Logo.Image = "http://www.roblox.com/asset/?id=18400578269"
   local position22 = game:GetService("Players").LocalPlayer.PlayerGui.Topbar.Topbar.AbsolutePosition
-  local newYPosition = position22.Y + 10
+  local newYPosition = position22.Y - 10
 	Logo.Position = UDim2.new(0.45, 0, 0, newYPosition)
 
 	UICorner.CornerRadius = UDim.new(0.5, 0)
