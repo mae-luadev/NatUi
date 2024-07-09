@@ -79,6 +79,7 @@ function Library:Create(xHubName,xGameName)
 
 	OpenSlideurs.Name = "OpenSlideurs"
 	OpenSlideurs.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	OpenSlideurs.ResetOnSpawn = false
 	OpenSlideurs.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	Logo.BackgroundTransparency = 1
 	Logo.ImageTransparency = 1
