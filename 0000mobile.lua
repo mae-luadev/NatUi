@@ -53,7 +53,7 @@ function Library:Drag(obj)
 	end)
 end
 
-function Library:Create(xHubName,xGameName)
+function Library:Create(xHubName,xGameName, MinimizeGame)
 	local xHubName = xHubName or "UI Library"
 	local xGameName = xGameName or "By Mapple#3045"
 	local Slideurs = Instance.new("ScreenGui")
@@ -78,8 +78,7 @@ function Library:Create(xHubName,xGameName)
 	local UICorner = Instance.new("UICorner")
 
 	OpenSlideurs.Name = "OpenSlideurs"
-	OpenSlideurs.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-	OpenSlideurs.ResetOnSpawn = false
+	OpenSlideurs.Parent = game.CoreGui
 	OpenSlideurs.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	Logo.BackgroundTransparency = 1
 	Logo.ImageTransparency = 1
@@ -127,7 +126,7 @@ function Library:Create(xHubName,xGameName)
 		ActualSide.CanvasSize = UDim2.new(0, 0, 0, ActualSideListLayout.AbsoluteContentSize.Y)
 	end
 
-	Slideurs.Parent = game.Players.LocalPlayer.PlayerGui
+	Slideurs.Parent = game.CoreGui
 	Slideurs.ResetOnSpawn = false 
 	Slideurs.Name = LibraryName
 
@@ -145,6 +144,27 @@ function Library:Create(xHubName,xGameName)
 	local SidebarCorner_2 = Instance.new("UICorner")
 	local Minimize = Instance.new("TextButton")
 	local SidebarCorner_3 = Instance.new("UICorner")
+	
+	local GameTitle = Instance.new("TextLabel")
+
+
+	GameTitle.Name = "GameTitle"
+	GameTitle.Parent = Topbar
+	GameTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	GameTitle.BackgroundTransparency = 1.000
+	GameTitle.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	GameTitle.BorderSizePixel = 0
+	GameTitle.Position = UDim2.new(0.0149999997, 0, 0.150000006, 0)
+	GameTitle.Size = UDim2.new(0.699999988, 0, 0.699999988, 0)
+	GameTitle.ZIndex = 2
+	GameTitle.TextTransparency = 1
+	GameTitle.Font = Enum.Font.Gotham
+	GameTitle.Text = MinimizeGame
+	GameTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+	GameTitle.TextScaled = true
+	GameTitle.TextSize = 14.000
+	GameTitle.TextXAlignment = Enum.TextXAlignment.Left
+	GameTitle.TextWrapped = true
 
 	Topbar.Name = "Topbar"
 	Topbar.Parent = FakeMain
@@ -215,12 +235,25 @@ function Library:Create(xHubName,xGameName)
 	end)
 	
 	Minimize.MouseButton1Down:Connect(function()
+		local TweenTest
 		if Main.Position == UDim2.new(0, 0, 0, 0) then
-		Tween:Create(Main, TweenInfo.new(0.7, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut, 0, false), {Position = UDim2.new(0, 0, -1, 0)}):Play()
+			
+			TweenTest = Tween:Create(Main, TweenInfo.new(0.7, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut, 0, false), {Position = UDim2.new(0, 0, -1, 0)})
 		else
-			Tween:Create(Main, TweenInfo.new(0.7, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut, 0, false), {Position = UDim2.new(0, 0, 0, 0)}):Play()
+			TweenTest = Tween:Create(Main, TweenInfo.new(0.7, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut, 0, false), {Position = UDim2.new(0, 0, 0, 0)})
+			Tween:Create(GameTitle, TweenInfo.new(.15, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut, 0, false), {TextTransparency = 1}):Play()
 
 		end
+		
+		TweenTest:Play()
+		TweenTest.Completed:Once(function()
+			if Main.Position == UDim2.new(0, 0, 0, 0) then
+				Tween:Create(GameTitle, TweenInfo.new(.15, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut, 0, false), {TextTransparency = 1}):Play()
+			else
+				Tween:Create(GameTitle, TweenInfo.new(.15, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut, 0, false), {TextTransparency = 0}):Play()
+
+			end
+		end)
 	end)
 
 	SidebarCorner_3.CornerRadius = UDim.new(1, 0)
