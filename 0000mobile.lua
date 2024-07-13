@@ -2,7 +2,11 @@ local Library = {}
 local Tween = game:GetService("TweenService")
 local LibraryName = "Slideurs"
 local mouse = game.Players.LocalPlayer:GetMouse()
-
+local OldTransparency = {
+	UI = {},
+	Text = {},
+	Image = {}
+}
 function Library:Toggle()
 	if game.CoreGui:FindFirstChild(LibraryName).Enabled then 
 		game.CoreGui:FindFirstChild(LibraryName).Enabled = false
@@ -71,7 +75,7 @@ function Library:Create(xHubName,xGameName, MinimizeGame)
 	local GameName = Instance.new("TextLabel")
 	local TabHolder = Instance.new("Frame")
 	local Tabs = Instance.new("Folder")
-	
+
 
 	local OpenSlideurs = Instance.new("ScreenGui")
 	local Logo = Instance.new("ImageButton")
@@ -98,12 +102,8 @@ function Library:Create(xHubName,xGameName, MinimizeGame)
 
 	Logo.Active = true
 	Logo.Draggable = true
-	
-	local OldTransparency = {
-		UI = {},
-		Text = {},
-		Image = {}
-	}
+
+
 
 	Logo.MouseButton1Down:Connect(function()
 		FakeMain.Position = UDim2.new(0.278277636, 0, 0.281287253, 0)
@@ -119,9 +119,9 @@ function Library:Create(xHubName,xGameName, MinimizeGame)
 		for gui, transparency in pairs(OldTransparency.Text) do
 			Tween:Create(gui, TweenInfo.new(0.7, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut, 0, false), {TextTransparency = transparency}):Play()
 		end
-	
+
 	end)
-	
+
 
 	function ScrollSize()
 		ActualSide.CanvasSize = UDim2.new(0, 0, 0, ActualSideListLayout.AbsoluteContentSize.Y)
@@ -138,14 +138,14 @@ function Library:Create(xHubName,xGameName, MinimizeGame)
 	FakeMain.Size = UDim2.new(0, 580, 0, 370)
 	FakeMain.ClipsDescendants = true
 	FakeMain.Transparency = 1
-	
+
 	local Topbar = Instance.new("Frame")
 	local Close = Instance.new("TextButton")
 	local SidebarCorner = Instance.new("UICorner")
 	local SidebarCorner_2 = Instance.new("UICorner")
 	local Minimize = Instance.new("TextButton")
 	local SidebarCorner_3 = Instance.new("UICorner")
-	
+
 	local GameTitle = Instance.new("TextLabel")
 
 
@@ -209,19 +209,25 @@ function Library:Create(xHubName,xGameName, MinimizeGame)
 	Minimize.TextSize = 14.000
 	Minimize.TextWrapped = true
 	Minimize.ZIndex = 2
-	
+
 	Close.MouseButton1Down:Connect(function()
 		for i, gui in pairs(Slideurs:GetDescendants()) do
 			if gui and gui:IsA("GuiObject") then
 
 				if gui:IsA("Frame") or gui:IsA("TextButton") or gui:IsA("TextBox") or gui:IsA("TextLabel") or gui:IsA("ImageButton") or gui:IsA("ImageLabel") or gui:IsA("ScrollingFrame") then
+					if not OldTransparency.UI[gui] then
 					OldTransparency.UI[gui] = gui.BackgroundTransparency
+					end
 					Tween:Create(gui, TweenInfo.new(0.7, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut, 0, false), {BackgroundTransparency = 1}):Play()
 					if gui:IsA("ImageLabel") or gui:IsA("ImageButton") then
+						if not OldTransparency.Image[gui] then
 						OldTransparency.Image[gui] = gui.ImageTransparency
+						end
 						Tween:Create(gui, TweenInfo.new(0.7, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut, 0, false), {ImageTransparency = 1}):Play()
 					elseif gui:IsA("TextBox") or gui:IsA("TextLabel") or gui:IsA("TextButton") then
+						if not OldTransparency.Text[gui] then
 						OldTransparency.Text[gui] = gui.TextTransparency
+						end
 						Tween:Create(gui, TweenInfo.new(0.7, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut, 0, false), {TextTransparency = 1}):Play()
 
 					end
@@ -234,18 +240,18 @@ function Library:Create(xHubName,xGameName, MinimizeGame)
 		Tween:Create(Logo, TweenInfo.new(.7, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut, 0, false), {ImageTransparency = 0}):Play()
 
 	end)
-	
+
 	Minimize.MouseButton1Down:Connect(function()
 		local TweenTest
 		if Main.Position == UDim2.new(0, 0, 0, 0) then
-			
+
 			TweenTest = Tween:Create(Main, TweenInfo.new(0.7, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut, 0, false), {Position = UDim2.new(0, 0, -1, 0)})
 		else
 			TweenTest = Tween:Create(Main, TweenInfo.new(0.7, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut, 0, false), {Position = UDim2.new(0, 0, 0, 0)})
 			Tween:Create(GameTitle, TweenInfo.new(.15, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut, 0, false), {TextTransparency = 1}):Play()
 
 		end
-		
+
 		TweenTest:Play()
 		TweenTest.Completed:Once(function()
 			if Main.Position == UDim2.new(0, 0, 0, 0) then
@@ -260,7 +266,7 @@ function Library:Create(xHubName,xGameName, MinimizeGame)
 	SidebarCorner_3.CornerRadius = UDim.new(1, 0)
 	SidebarCorner_3.Name = "SidebarCorner"
 	SidebarCorner_3.Parent = Minimize
-	
+
 	Main.Name = "Main"
 	Main.Parent = FakeMain
 	Main.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
@@ -712,7 +718,7 @@ function Library:Create(xHubName,xGameName, MinimizeGame)
 			local uis = game:GetService("UserInputService")
 			local Value
 			local mouse = game:GetService("Players").LocalPlayer:GetMouse();
-			
+
 
 			SliderButton.MouseButton1Down:Connect(function()
 
@@ -732,25 +738,25 @@ function Library:Create(xHubName,xGameName, MinimizeGame)
 					end)
 					SliderTrail:TweenSize(UDim2.new(0, math.clamp(mouse.X - SliderTrail.AbsolutePosition.X, 0, 389), 0, 10), "InOut", "Linear", 0.05, true)
 				end)
-				
 
-				
+
+
 				releaseconnection = uis.InputEnded:Connect(function(Mouse)
-						Value = math.floor((((tonumber(Max) - tonumber(Min)) / 389) * SliderTrail.AbsoluteSize.X) + tonumber(Min))
-						pcall(function()
-							Callback(Value)
-						end)
-						SliderValue.Text = Value
-						game:GetService("TweenService"):Create(SliderValue, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
-							TextTransparency = 1
-						}):Play()
-						SliderTrail:TweenSize(UDim2.new(0, math.clamp(mouse.X - SliderTrail.AbsolutePosition.X, 0, 389), 0, 10), "InOut", "Linear", 0.05, true)
-						moveconnection:Disconnect()
-						releaseconnection:Disconnect()
-					
+					Value = math.floor((((tonumber(Max) - tonumber(Min)) / 389) * SliderTrail.AbsoluteSize.X) + tonumber(Min))
+					pcall(function()
+						Callback(Value)
+					end)
+					SliderValue.Text = Value
+					game:GetService("TweenService"):Create(SliderValue, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+						TextTransparency = 1
+					}):Play()
+					SliderTrail:TweenSize(UDim2.new(0, math.clamp(mouse.X - SliderTrail.AbsolutePosition.X, 0, 389), 0, 10), "InOut", "Linear", 0.05, true)
+					moveconnection:Disconnect()
+					releaseconnection:Disconnect()
+
 				end)
 			end)
-			
+
 		end
 
 		function Elements:Textbox(Name,Default,Callback)
@@ -1107,7 +1113,7 @@ function Library:Create(xHubName,xGameName, MinimizeGame)
 							ImageColor3 = Color3.fromRGB(255,255,255)
 						}):Play()
 						wait(0.1)
-						
+
 						DropList.Visible = false
 						opened = false
 						DropElements(true)
