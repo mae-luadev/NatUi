@@ -86,6 +86,7 @@ function Library:Create(xHubName,xGameName, MinimizeGame)
 	OpenSlideurs.Parent = game.CoreGui
 	OpenSlideurs.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	OpenSlideurs.ResetOnSpawn = false 
+	OpenSlideurs.IgnoreGuiInset = false
 	Logo.BackgroundTransparency = 1
 	Logo.ImageTransparency = 1
 
@@ -135,6 +136,7 @@ local minimize = false
 
 	Slideurs.Parent = game.CoreGui
 	Slideurs.ResetOnSpawn = false 
+	Slideurs.IgnoreGuiInset = false
 	Slideurs.Name = LibraryName
 
 	FakeMain.Name = "FakeMain"
