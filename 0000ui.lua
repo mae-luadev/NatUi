@@ -72,6 +72,8 @@ function Library:Create(xHubName,xGameName)
 
 	function ScrollSize()
 		ActualSide.CanvasSize = UDim2.new(0, 0, 0, ActualSideListLayout.AbsoluteContentSize.Y)
+		ActualSide.ScrollingDirection = Enum.ScrollingDirection.Y
+		ActualSide.AutomaticCanvasSize = Enum.AutomaticSize.Y
 	end
 
 	ScreenGui.Parent = game.CoreGui
@@ -188,8 +190,12 @@ function Library:Create(xHubName,xGameName)
 		Tab.Visible = xVisible
 		Tab.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
 		Tab.BorderSizePixel = 0
-		Tab.Size = UDim2.new(0, 438, 0, 352)
-		Tab.ScrollBarThickness = 5
+		Tab.Position = UDim2.new(0, 0, 0, 35)
+		Tab.Size = UDim2.new(0, 438, 0, 320)
+		Tab.ScrollBarThickness = 0
+		Tab.ScrollingDirection = Enum.ScrollingDirection.Y
+		Tab.AutomaticCanvasSize = Enum.AutomaticSize.Y
+		Tab.CanvasSize = UDim2.new(0, 0, 0, 0)
 
 		TabListLayout.Name = "TabListLayout"
 		TabListLayout.Parent = Tab
@@ -914,7 +920,7 @@ function Library:Create(xHubName,xGameName)
 							ImageColor3 = Color3.fromRGB(255,255,255)
 						}):Play()
 						wait(0.1)
-						
+
 						DropList.Visible = false
 						opened = false
 						DropElements(true)

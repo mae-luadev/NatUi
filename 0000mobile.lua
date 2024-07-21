@@ -105,7 +105,7 @@ function Library:Create(xHubName,xGameName, MinimizeGame)
 	Logo.Active = true
 	Logo.Draggable = true
 
-local minimize = false
+	local minimize = false
 
 	Logo.MouseButton1Down:Connect(function()
 		FakeMain.Position = UDim2.new(0.278277636, 0, 0.281287253, 0)
@@ -131,7 +131,9 @@ local minimize = false
 
 
 	function ScrollSize()
-		ActualSide.CanvasSize = UDim2.new(0, 0, 0, ActualSideListLayout.AbsoluteContentSize.Y)
+		ActualSide.CanvasSize = UDim2.new(0, 0, 0, 0)
+		ActualSide.ScrollingDirection = Enum.ScrollingDirection.Y
+		ActualSide.AutomaticCanvasSize = Enum.AutomaticSize.Y
 	end
 
 	Slideurs.Parent = game.CoreGui
@@ -217,7 +219,7 @@ local minimize = false
 	Minimize.TextWrapped = true
 	Minimize.ZIndex = 2
 
-local canclick = true
+	local canclick = true
 	Close.MouseButton1Down:Connect(function()
 		if not canclick then
 			return
@@ -402,7 +404,10 @@ local canclick = true
 		Tab.BorderSizePixel = 0
 		Tab.Position = UDim2.new(0, 0, 0, 35)
 		Tab.Size = UDim2.new(0, 438, 0, 320)
-		Tab.ScrollBarThickness = 5
+		Tab.ScrollBarThickness = 0
+		Tab.ScrollingDirection = Enum.ScrollingDirection.Y
+		Tab.AutomaticCanvasSize = Enum.AutomaticSize.Y
+		Tab.CanvasSize = UDim2.new(0, 0, 0, 0)
 
 		TabListLayout.Name = "TabListLayout"
 		TabListLayout.Parent = Tab
