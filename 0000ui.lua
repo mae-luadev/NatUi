@@ -190,8 +190,7 @@ function Library:Create(xHubName,xGameName)
 		Tab.Visible = xVisible
 		Tab.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
 		Tab.BorderSizePixel = 0
-		Tab.Position = UDim2.new(0, 0, 0, 35)
-		Tab.Size = UDim2.new(0, 438, 0, 320)
+		Tab.Size = UDim2.new(0, 438, 0, 352)
 		Tab.ScrollBarThickness = 0
 		Tab.ScrollingDirection = Enum.ScrollingDirection.Y
 		Tab.AutomaticCanvasSize = Enum.AutomaticSize.Y
